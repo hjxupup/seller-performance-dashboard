@@ -1,0 +1,312 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="Jiaxin Hu's interactive seller operations dashboard portfolio. Explore account hierarchies, delivery signals, and revenue with synthetic demonstration data.">
+  <meta name="theme-color" content="#173e35">
+  <title>Seller Performance Dashboard | Jiaxin Hu</title>
+  <style>
+:root{--forest:#173e35;--forest-deep:#14352e;--green:#367c61;--mint:#cae6b3;--paper:#f6f7f3;--ink:#253d35;--muted:#6c7971;--border:#e4e8e1;--white:#fff;--orange:#b17731;--red:#ad574d;--shadow:0 3px 18px rgba(30,55,36,.025)}
+*{box-sizing:border-box}body{margin:0;background:var(--paper);color:var(--ink);font-family:Inter,"Segoe UI",Arial,sans-serif;font-size:14px;-webkit-font-smoothing:antialiased}a{color:inherit;text-decoration:none}button,input,select{font:inherit}button,a,select{ -webkit-tap-highlight-color:transparent}button,select{cursor:pointer}button:disabled{cursor:default;opacity:.4}:focus-visible{outline:3px solid #a2c77b;outline-offset:3px}[hidden]{display:none!important}.shell{display:grid;grid-template-columns:232px minmax(0,1fr);min-height:100vh}.sidebar{position:sticky;top:0;height:100vh;background:var(--forest);color:#f6faf5;padding:38px 23px 25px;display:flex;flex-direction:column}.brand{display:flex;align-items:center;gap:10px;font-size:26px;letter-spacing:-1px;font-weight:650}.brand-dot{color:var(--mint);margin-left:-10px}.brand-mark{display:flex;align-items:center;justify-content:center;gap:2px;background:var(--mint);color:var(--forest);border-radius:9px;width:34px;height:34px;font-size:28px;font-weight:700;letter-spacing:-4px;padding-right:4px}.brand-mark span{font-size:18px;align-self:flex-start;margin-top:3px}.side-label{font-size:9px;letter-spacing:1.65px;color:#b2c8bb;margin:50px 0 15px 12px}.nav-link{display:flex;align-items:center;gap:13px;padding:13px 13px;margin:4px 0;border-radius:7px;color:#c3d5c9;font-size:13px}.nav-link>span{font-size:19px;width:20px;line-height:1;text-align:center}.nav-link:hover{background:#214c40;color:#fff}.nav-link.active{background:var(--mint);color:var(--forest);font-weight:600}.story-label{margin-top:35px}.sidebar-bottom{margin-top:auto;padding-top:35px}.demo-note{font-size:12px;padding:20px 12px;border-top:1px solid #31574b;border-bottom:1px solid #31574b}.status-dot{display:inline-block;width:6px;height:6px;background:#87b179;border-radius:50%;margin-right:7px}.demo-note p{color:#b2c8bb;font-size:11px;line-height:1.8;margin:8px 0 0 13px}.creator{display:flex;align-items:center;gap:10px;margin:23px 5px 0}.avatar{width:33px;height:33px;border-radius:50%;background:#315b48;display:grid;place-items:center;font-size:11px;color:var(--mint)}.creator strong{font-size:12px;display:block;font-weight:500}.creator span{display:block;font-size:9px;margin-top:5px;color:#b2c8bb}.workspace{min-width:0}.topbar{height:75px;padding:0 40px;display:flex;align-items:center;justify-content:space-between;border-bottom:1px solid var(--border);background:#fafbf8}.breadcrumb{font-size:11px;color:var(--muted)}.breadcrumb span{color:#a8b0a8;margin:0 12px}.breadcrumb strong{color:var(--ink);font-weight:500}.top-actions{display:flex;align-items:center;gap:24px}.demo-badge{font-size:8px;font-weight:650;letter-spacing:1px;color:var(--green);padding:6px 9px;border:1px solid #d9e5cf;border-radius:4px;background:#eff5e9}.about-link{font-size:11px}.about-link span{margin-left:6px}main{padding:37px 40px 30px;max-width:1630px;margin:0 auto}.page-heading{display:flex;align-items:center;justify-content:space-between;gap:18px;margin-bottom:27px}.eyebrow{font-size:9px;letter-spacing:1.5px;font-weight:600;color:var(--green);margin-bottom:11px}.eyebrow.small{font-size:8px;letter-spacing:1.25px;margin-bottom:8px}h1{font-family:Georgia,"Times New Roman",serif;letter-spacing:-1.15px;font-weight:400;font-size:38px;line-height:1.18;margin:0 0 11px}.page-heading p{color:var(--muted);font-size:12px;margin:0;line-height:1.6}.button{display:inline-flex;gap:10px;align-items:center;justify-content:center;border-radius:6px;padding:10px 15px;min-height:38px;font-size:11px;white-space:nowrap}.button.secondary{background:#fff;border:1px solid #dce2d7;color:var(--ink)}.button:hover{filter:brightness(.97)}.button.primary{background:var(--forest);color:#fff;border:1px solid var(--forest);padding:13px 17px}.filter-panel{border:1px solid var(--border);border-radius:8px;background:#fff;margin-bottom:22px;box-shadow:var(--shadow)}.filters{display:flex;align-items:flex-end;gap:14px;padding:17px 19px 15px}.filters label{display:flex;flex-direction:column;gap:7px;font-size:10px;color:var(--muted);flex:1;min-width:0}.filters .scope-label{flex:1.7}select{appearance:none;background:#fff url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='9' height='6'%3E%3Cpath d='m1 1 3.5 3.5L8 1' stroke='%235a7060' fill='none' stroke-width='1.2'/%3E%3C/svg%3E") right 12px center/9px 6px no-repeat;color:var(--ink);border:1px solid #dfe5da;border-radius:5px;padding:10px 29px 10px 11px;font-size:11px;min-width:0;max-width:100%;height:36px}.reset-button{background:none;border:0;color:var(--muted);padding:9px 0 9px 2px;font-size:15px;display:flex;gap:5px;align-items:center}.reset-button span{font-size:10px}.filter-meta{border-top:1px solid #edf0e9;display:flex;justify-content:space-between;gap:10px;padding:10px 20px;font-size:10px;color:var(--muted)}.filter-meta strong{color:var(--ink);font-weight:500}.kpi-grid{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:16px;margin-bottom:24px}.kpi-card{border:1px solid var(--border);background:#fff;border-radius:8px;padding:18px 20px 17px;box-shadow:var(--shadow);position:relative;overflow:hidden}.kpi-card:first-child{background:#f0f5e8;border-color:#dce5d0}.kpi-label{color:var(--muted);font-size:10px;display:flex;justify-content:space-between;align-items:center}.kpi-icon{background:#edf2e8;width:23px;height:23px;border-radius:5px;display:grid;place-items:center;color:#71866a;font-size:13px}.kpi-value{font-size:28px;font-weight:550;letter-spacing:-.8px;margin:11px 0 10px;font-variant-numeric:tabular-nums}.kpi-bottom{font-size:9px;color:var(--muted);display:flex;align-items:center;gap:7px;line-height:1.5}.delta{font-size:9px;font-weight:600;color:#417549;background:#edf5e9;padding:3px 5px;border-radius:3px;white-space:nowrap}.delta.negative{background:#f9efeb;color:#a65b4c}.delta.neutral{background:#f0f1ee;color:var(--muted)}.panel{background:#fff;border:1px solid var(--border);border-radius:8px;padding:23px 23px 18px;box-shadow:var(--shadow);min-width:0}.panel h2{font-size:15px;font-weight:550;letter-spacing:-.25px;margin:0}.panel-heading{display:flex;justify-content:space-between;align-items:center;gap:18px;margin-bottom:16px}.chart-grid{display:grid;grid-template-columns:minmax(0,2.13fr) minmax(0,1fr);gap:20px;margin-bottom:24px}.chart-legend{display:flex;gap:14px;font-size:9px;white-space:nowrap;color:var(--muted)}.chart-legend>span{display:flex;align-items:center;gap:6px}.swatch{width:7px;height:7px;border-radius:50%;display:inline-block}.swatch.current{background:var(--green)}.swatch.previous{background:#b5c2a8}.chart-container{position:relative;width:100%;height:246px}.chart-container.large{height:340px}.chart-container svg{width:100%;height:100%;display:block;overflow:visible}.chart-svg text{font-family:Inter,"Segoe UI",Arial,sans-serif;fill:#7a887c;font-size:10px}.chart-caption{border-top:1px solid #eef1e9;display:flex;justify-content:space-between;gap:10px;padding-top:14px;margin-top:7px;font-size:9px;color:var(--muted)}.chart-caption a{color:var(--green)}.panel-subtitle{color:var(--muted);font-size:10px;line-height:1.7;margin:8px 0 0}.mix-panel h2{font-size:15px;line-height:1.4}.mix-panel .panel-subtitle{margin-top:8px;margin-bottom:17px}.mix-row{padding:11px 0}.mix-row-top{display:flex;align-items:center;gap:8px;font-size:11px}.country-code{font-size:8px;border:1px solid #e5e9de;border-radius:3px;color:var(--muted);padding:3px 4px;min-width:25px;text-align:center;background:#f9faf6}.mix-row-top strong{margin-left:auto;font-size:11px;font-weight:500}.mix-track{height:5px;border-radius:4px;background:#f0f2eb;margin:10px 0 0 33px;overflow:hidden}.mix-track div{height:100%;border-radius:4px;background:#709674}.mix-row:nth-child(2) .mix-track div{background:#a0b795}.mix-row:nth-child(3) .mix-track div{background:#c4d3b3}.mix-row:nth-child(4) .mix-track div{background:#d4debf}.mix-footnote{border-top:1px solid #eef1e9;font-size:9px;color:var(--muted);padding-top:14px;margin-top:13px}.account-panel{margin-top:0}.text-link{font-size:10px;color:var(--green);white-space:nowrap}.table-scroll{overflow-x:auto}.data-table{width:100%;border-collapse:collapse;text-align:left;white-space:nowrap}.data-table th{color:#7c887d;font-weight:500;font-size:9px;background:#f8f9f5;padding:12px 12px;border-bottom:1px solid #e9ede5}.data-table td{padding:14px 12px;font-size:10px;color:#4d6151;border-bottom:1px solid #f0f2eb;font-variant-numeric:tabular-nums}.data-table th:first-child,.data-table td:first-child{padding-left:10px}.data-table tbody tr:last-child td{border-bottom:0}.data-table td.numeric,.data-table th.numeric{text-align:right}.account-name{display:flex;gap:9px;align-items:center}.mini-avatar{width:28px;height:28px;border-radius:6px;background:#f1f4eb;color:#758b68;display:grid;place-items:center;font-size:10px;font-weight:500}.account-name strong{font-weight:550;color:var(--ink);font-size:11px;display:block}.account-name small{font-size:8px;color:#829080;display:block;margin-top:4px}.drill-button{background:none;border:0;text-align:left;padding:0;color:inherit;cursor:pointer}.drill-button:hover strong{text-decoration:underline}.health-badge{padding:4px 7px;border-radius:4px;background:#edf5e8;color:#557749;font-size:8px;display:inline-flex;gap:4px;align-items:center}.health-badge.watch{background:#faf3e7;color:#a47a39}.health-badge.review{background:#faeeeb;color:#a3584b}.bottom-note{display:flex;align-items:center;gap:5px;margin:21px 1px 0;font-size:9px;color:#7d897d;flex-wrap:wrap}.bottom-note .separator{margin:0 6px}.bottom-note a{margin-left:auto;color:var(--green)}.metric-label{font-size:10px;color:var(--muted);display:flex;align-items:center;gap:10px}.metric-label select{width:220px}.formula-box{font-size:11px;color:var(--muted);background:#f7f9f3;border-radius:5px;padding:13px 15px;line-height:1.7;margin-top:15px}.formula-box strong{color:var(--ink);font-weight:500}.summary-panel{margin-top:20px}.search-label input{border:1px solid var(--border);background:#fafbf8;color:var(--ink);border-radius:5px;padding:10px 12px;font-size:11px;max-width:100%;width:210px}.pagination{display:flex;align-items:center;justify-content:space-between;gap:15px;margin-top:18px;font-size:10px;color:var(--muted)}.pagination>div{display:flex;gap:8px}.pagination .button{font-size:10px;min-height:32px;padding:7px 11px}.soft-badge{background:#f7f4eb;border:1px solid #eee7d7;color:#957a42;border-radius:4px;padding:6px 8px;font-size:9px}.assessment-note{color:var(--muted);font-size:10px;line-height:1.8;margin:20px 0 0}.empty{text-align:center;padding:45px 15px;color:var(--muted);font-size:12px}.tooltip{position:fixed;pointer-events:none;z-index:10;background:#193e34;color:#fff;box-shadow:0 6px 20px #1a3d3520;border-radius:6px;padding:12px 14px;font-size:11px;line-height:1.8;min-width:150px}.tooltip strong{display:block;font-size:10px;color:#cbe0bd;margin-bottom:4px}.tooltip .tip-row{display:flex;justify-content:space-between;gap:18px}.toast{position:fixed;bottom:24px;right:26px;background:var(--forest);color:#fff;padding:13px 18px;border-radius:6px;box-shadow:0 5px 25px #173e3522;font-size:12px;z-index:12}.story-hero{padding:18px 0 50px;max-width:780px}.story-hero h1{font-size:62px;line-height:1.07;letter-spacing:-2px;margin:18px 0 23px}.story-hero h1 span{color:#719657}.story-hero>p{font-size:15px;color:var(--muted);line-height:1.8;max-width:600px}.story-actions{display:flex;align-items:center;gap:23px;margin-top:27px;flex-wrap:wrap}.story-actions>span{font-size:11px;color:var(--muted)}.story-section{display:grid;grid-template-columns:180px minmax(0,1fr);gap:20px;border-top:1px solid #dfe5d9;padding:38px 0}.story-index{font-size:9px;letter-spacing:1px;color:var(--green);padding-top:6px}.story-section h2{font-size:23px;font-weight:450;letter-spacing:-.4px;margin:0 0 18px}.story-section p{font-size:12px;line-height:1.95;color:var(--muted);max-width:750px}.feature-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:20px;margin-top:25px}.feature-grid article>span{font-size:11px;color:#7a9964}.feature-grid h3{font-size:13px;font-weight:550;margin:12px 0 8px}.feature-grid p{font-size:11px;margin:0}.pipeline{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:10px;margin:25px 0 27px}.pipeline>div{background:#edf2e6;padding:15px 13px;border-radius:5px}.pipeline span{color:#779567;font-size:9px}.pipeline strong{display:block;font-size:11px;font-weight:550;margin:10px 0 8px}.pipeline small{font-size:9px;color:var(--muted);line-height:1.6;display:block}.engineering-list{margin:0}.engineering-list>div{display:grid;grid-template-columns:140px 1fr;border-top:1px solid #e5e9df;padding:16px 0;gap:15px}.engineering-list dt{font-size:11px;font-weight:550}.engineering-list dd{font-size:11px;color:var(--muted);line-height:1.85;margin:0}.demo-details{display:flex;gap:45px;margin:25px 0}.demo-details strong{display:block;font-size:32px;color:var(--green);font-weight:500}.demo-details span{display:block;font-size:10px;color:var(--muted);margin-top:7px}footer{max-width:1630px;margin:0 auto;padding:20px 40px 24px;font-size:11px;font-weight:600;color:#819079;display:flex;gap:15px;justify-content:space-between}footer>span{font-size:9px;font-weight:400}.sr-only{position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0,0,0,0);white-space:nowrap;border:0}
+@media(min-width:1500px){main{padding:45px 50px 30px}.topbar{padding:0 50px}.chart-container{height:290px}.kpi-value{font-size:34px}.panel{padding:26px}.filters{gap:18px}.kpi-card{padding:23px}.data-table td{padding:17px 13px}}
+@media(max-width:1200px){.shell{grid-template-columns:192px minmax(0,1fr)}.sidebar{padding:32px 17px 22px}.brand{font-size:24px}.topbar{padding:0 25px}main{padding:30px 25px}.filters{flex-wrap:wrap;gap:12px}.filters label{flex:1 1 100px}.filters .scope-label{flex:1.5 1 180px}.filters #year,.filters #month{min-width:85px}.kpi-card{padding:16px}.kpi-value{font-size:25px}.kpi-bottom{flex-wrap:wrap;gap:4px}.chart-grid{grid-template-columns:minmax(0,1.7fr) minmax(0,1fr);gap:16px}.panel{padding:20px 16px 16px}.chart-legend{gap:8px}.panel h2{font-size:14px}.mix-panel h2{font-size:14px}.story-section{grid-template-columns:140px minmax(0,1fr)}.pipeline{grid-template-columns:repeat(2,minmax(0,1fr))}}
+@media(max-width:900px){.shell{grid-template-columns:165px minmax(0,1fr)}.sidebar{padding:28px 12px 20px}.brand{font-size:21px;gap:7px}.brand-mark{width:29px;height:29px}.nav-link{font-size:11px;padding:12px 10px;gap:9px}.side-label{font-size:8px;margin-left:8px;letter-spacing:1px}.creator{margin-left:0;gap:7px}.creator span{font-size:8px}.kpi-grid{grid-template-columns:repeat(2,minmax(0,1fr));gap:12px}.chart-grid{grid-template-columns:1fr}.mix-panel #corridor-mix{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));column-gap:25px}.mix-panel .mix-footnote{margin-top:14px}.page-heading{align-items:flex-start}h1{font-size:32px}.page-heading .button{font-size:10px;padding:9px 10px}.top-actions{gap:12px}.about-link{display:none}.story-hero h1{font-size:49px}.story-section{grid-template-columns:1fr;gap:18px}.feature-grid{gap:14px}footer{padding:15px 25px 23px}.metric-label{flex-direction:column;align-items:flex-start;gap:5px}.metric-label select{width:180px}}
+@media(max-width:640px){.shell{display:block}.sidebar{position:relative;height:auto;padding:18px 18px 12px;display:block}.brand{font-size:23px;width:max-content}.sidebar nav{display:flex;gap:2px;margin-top:16px;overflow:auto}.sidebar .side-label,.sidebar-bottom,.story-label{display:none}.sidebar .nav-link{padding:9px 11px;margin:0;white-space:nowrap;font-size:10px;gap:5px}.sidebar .nav-link>span{font-size:15px;width:15px}.sidebar>a.nav-link{position:absolute;right:18px;top:22px;padding:0;color:#daead0}.sidebar>a.nav-link.active{background:none;color:var(--mint)}.topbar{height:53px;padding:0 20px}.breadcrumb{font-size:10px}.demo-badge{font-size:7px}.top-actions{gap:0}main{padding:25px 18px 20px}.page-heading{flex-wrap:wrap;gap:16px;margin-bottom:22px}h1{font-size:31px;letter-spacing:-.8px}.page-heading p{font-size:11px}.page-heading .button{font-size:10px}.filters{padding:15px;gap:13px}.filters label{flex:1 1 calc(50% - 13px)}.filters .scope-label{flex:1 1 calc(50% - 13px)}.filters select{font-size:12px;height:39px}.reset-button{padding:4px 0}.filter-meta{padding:10px 15px;flex-direction:column;font-size:9px}.kpi-grid{gap:10px;margin-bottom:18px}.kpi-card{padding:15px 13px}.kpi-label{font-size:9px}.kpi-value{font-size:26px}.kpi-icon{width:20px;height:20px}.kpi-bottom{font-size:8px;gap:5px}.delta{font-size:8px}.panel{padding:20px 15px 15px}.panel-heading{gap:10px}.chart-container{height:235px}.chart-container.large{height:275px}.chart-grid{margin-bottom:18px}.chart-legend{font-size:9px}.chart-caption{font-size:8px;flex-wrap:wrap;gap:7px}.panel h2{font-size:14px}.bottom-note{font-size:8px;line-height:1.8}.bottom-note a{margin:5px 0 0;flex-basis:100%}.metric-label select{width:140px;font-size:10px}.search-label{width:130px}.search-label input{width:100%;font-size:11px;padding:9px}.pagination{flex-wrap:wrap;font-size:9px}.soft-badge{font-size:8px;white-space:nowrap}.assessment-note{font-size:9px}.story-hero{padding:8px 0 30px}.story-hero h1{font-size:43px}.story-hero>p{font-size:13px}.story-actions{gap:15px}.story-section{padding:28px 0}.story-section h2{font-size:22px;line-height:1.35}.feature-grid{grid-template-columns:1fr;gap:20px}.feature-grid article{display:grid;grid-template-columns:30px 1fr;column-gap:10px}.feature-grid article>span{grid-row:span 2;padding-top:3px}.feature-grid h3{margin:0 0 7px}.pipeline{gap:10px}.engineering-list>div{grid-template-columns:1fr;gap:7px}.demo-details{gap:22px}.demo-details strong{font-size:28px}.demo-details span{font-size:9px}footer{padding:15px 18px 22px;font-size:10px;flex-wrap:wrap;gap:7px}footer>span{font-size:8px}.tooltip{font-size:10px}.toast{left:18px;right:18px;bottom:18px;font-size:11px}}
+@media(prefers-reduced-motion:reduce){*{scroll-behavior:auto!important}}
+/* Full project name: keep all three words readable in the sidebar. */
+.brand-copy{font-size:16px;line-height:1.22;letter-spacing:-.2px;font-weight:550}
+.brand .brand-mark{flex-shrink:0;font-size:20px;letter-spacing:-1px;padding:0}
+@media(max-width:1200px){.brand-copy{font-size:15px}.brand{gap:9px}}
+@media(max-width:900px){.brand-copy{font-size:13px}.brand{gap:8px}}
+@media(max-width:640px){.brand-copy{font-size:14px;line-height:1.17}.sidebar>a.nav-link{top:33px}}
+
+  </style>
+
+</head>
+<body>
+<div class="shell">
+  <aside class="sidebar">
+    <a class="brand" href="#overview" aria-label="Seller Performance Dashboard"><span class="brand-mark" aria-hidden="true">sp</span><span class="brand-copy">Seller<br>Performance<br>Dashboard</span></a>
+    <div class="side-label">OPERATIONS WORKSPACE</div>
+    <nav aria-label="Main navigation">
+      <a href="#overview" data-page="overview" class="nav-link active"><span aria-hidden="true">◫</span> Overview</a>
+      <a href="#performance" data-page="performance" class="nav-link"><span aria-hidden="true">↗</span> Performance</a>
+      <a href="#accounts" data-page="accounts" class="nav-link"><span aria-hidden="true">▦</span> Accounts</a>
+      <a href="#assessment" data-page="assessment" class="nav-link"><span aria-hidden="true">✓</span> Assessment</a>
+    </nav>
+    <div class="side-label story-label">BEHIND THE PROJECT</div>
+    <a href="#story" data-page="story" class="nav-link"><span aria-hidden="true">⌘</span> Project story</a>
+    <div class="sidebar-bottom"><div class="demo-note"><span class="status-dot"></span> Portfolio demo<p>Explore the product with<br>synthetic seller data.</p></div><div class="creator"><div class="avatar">JH</div><div><strong>Jiaxin Hu</strong><span>Developer · Data &amp; systems</span></div></div></div>
+  </aside>
+  <div class="workspace">
+    <header class="topbar"><span class="breadcrumb">Workspace <span>/</span> <strong id="page-label">Overview</strong></span><div class="top-actions"><span class="demo-badge">SYNTHETIC DATA</span><a href="#story" class="about-link">About this project <span aria-hidden="true">↗</span></a></div></header>
+    <main>
+      <section id="dashboard-page">
+        <div class="page-heading"><div><div class="eyebrow">SELLER OPERATIONS / ANALYTICS</div><h1 id="view-title">Every signal. One clear view.</h1><p id="view-subtitle">Understand seller performance, from revenue to the last mile.</p></div><button id="export-button" class="button secondary"><span aria-hidden="true">↓</span> Export report</button></div>
+        <div class="filter-panel">
+          <div class="filters">
+            <label>View by<select id="level"><option value="group">Group</option><option value="entity">Entity / UID</option><option value="seller">Seller</option><option value="account">Account</option></select></label>
+            <label class="scope-label">Scope<select id="scope"><option value="all">All groups</option></select></label>
+            <label>Corridor<select id="corridor"><option value="all">All corridors</option><option value="US">United States</option><option value="UK">United Kingdom</option><option value="DE">Germany</option><option value="AU">Australia</option></select></label>
+            <label>Period<select id="period"><option value="monthly">Monthly</option><option value="ytd">Year to date</option></select></label>
+            <label>Year<select id="year"><option value="2026">2026</option><option value="2025">2025</option></select></label>
+            <label>Month<select id="month"></select></label>
+            <button id="reset-button" class="reset-button" type="button" aria-label="Reset all filters">↺ <span>Reset</span></button>
+          </div>
+          <div class="filter-meta"><span id="scope-description" aria-live="polite"></span><span id="period-description"></span></div>
+        </div>
+        <div class="kpi-grid" id="kpi-grid" aria-live="polite"></div>
+        <div id="overview-content">
+          <div class="chart-grid"><section class="panel trend-panel"><div class="panel-heading"><div><div class="eyebrow small">BUSINESS MOMENTUM</div><h2>Revenue, over time</h2></div><div class="chart-legend"><span><i class="swatch current"></i> <span id="current-year-label">2026</span></span><span><i class="swatch previous"></i> <span id="previous-year-label">2025</span></span></div></div><div id="revenue-chart" class="chart-container"></div><div class="chart-caption"><span>GMV in USD · <span id="chart-period"></span></span><a href="#performance">Explore all metrics ↗</a></div></section>
+            <section class="panel mix-panel"><div class="eyebrow small">MARKET BREAKDOWN</div><h2>Where revenue comes from</h2><p class="panel-subtitle">Share of GMV in the selected period</p><div id="corridor-mix"></div><div class="mix-footnote">A closer look at each cross-border corridor.</div></section></div>
+          <section class="panel account-panel"><div class="panel-heading"><div><div class="eyebrow small">ACCOUNT HEALTH</div><h2>Spot the signals that need attention</h2></div><a href="#accounts" class="text-link">All accounts ↗</a></div><div id="overview-table"></div></section>
+        </div>
+        <div id="performance-content" hidden><section class="panel"><div class="panel-heading"><div><h2>Performance explorer</h2><p class="panel-subtitle">Fourteen metrics, calculated from the underlying counts.</p></div><label class="metric-label">Metric<select id="metric"></select></label></div><div id="performance-chart" class="chart-container large"></div><div class="formula-box" id="metric-formula"></div></section><section class="panel summary-panel"><div class="panel-heading"><div><h2>Corridor summary</h2><p class="panel-subtitle">The same filters drive every number in this view.</p></div></div><div id="summary-table"></div></section></div>
+        <div id="accounts-content" hidden><section class="panel"><div class="panel-heading"><div><h2>Account directory</h2><p class="panel-subtitle">Select an account to drill into its performance.</p></div><label class="search-label"><span class="sr-only">Search account name or ID</span><input id="account-search" type="search" placeholder="Search name or ID…" autocomplete="off"></label></div><div id="accounts-table"></div><div class="pagination"><span id="page-info"></span><div><button id="prev-page" class="button secondary">← Previous</button><button id="next-page" class="button secondary">Next →</button></div></div></section></div>
+        <div id="assessment-content" hidden><section class="panel"><div class="panel-heading"><div><h2>Delivery &amp; account assessment</h2><p class="panel-subtitle">Compare delivery signals across the selected corridors.</p></div><span class="soft-badge">Illustrative thresholds</span></div><div id="assessment-table"></div><p class="assessment-note">Demo thresholds: acceptance scans ≥ 95%; delivery scans ≥ 93%; item-not-received rate ≤ 1%. These are examples for this portfolio, not company policies or a reproduction of the original assessment rules.</p></section></div>
+        <div class="bottom-note"><span class="status-dot"></span> Demo snapshot: Sep 2026 <span class="separator">·</span> All names, IDs and values are fictional.<a href="#story">How it was built ↗</a></div>
+      </section>
+      <section id="story-page" hidden>
+        <div class="story-hero"><div class="eyebrow">PROJECT CASE STUDY / JIAXIN HU</div><h1>Turning seller data<br>into daily decisions<span>.</span></h1><p>A seller operations dashboard that connects account hierarchies, performance trends and delivery signals in one place.</p><div class="story-actions"><a href="#overview" class="button primary">Try the interactive demo <span aria-hidden="true">↗</span></a><span>Python · Dash · Pandas · Plotly · SQL</span></div></div>
+        <div class="story-section"><div class="story-index">01 / CONTEXT</div><div><h2>One operational question. Several data sources.</h2><p>Account teams need to understand how a seller is doing, which delivery corridor needs attention, and whether individual accounts explain a change in performance. Bringing account information, transaction metrics and assessment results into a single interface makes those questions easier to investigate.</p><p>The original application reads three coordinated CSV snapshots, aggregates transaction-level measures with Pandas, and updates tables and Plotly charts through Dash callbacks.</p></div></div>
+        <div class="story-section"><div class="story-index">02 / EXPERIENCE</div><div><h2>Start broad. Follow the signal.</h2><div class="feature-grid"><article><span>01</span><h3>Navigate the hierarchy</h3><p>Explore groups, entities, sellers and accounts without losing the reporting context.</p></article><article><span>02</span><h3>Compare consistently</h3><p>Switch between monthly and year-to-date views. Recompute ratios from summed numerators and denominators.</p></article><article><span>03</span><h3>Investigate delivery</h3><p>Track acceptance scans, delivery scans, item-not-received rates and handling times alongside revenue.</p></article></div></div></div>
+        <div class="story-section"><div class="story-index">03 / ENGINEERING</div><div><h2>The original Python application</h2><div class="pipeline"><div><span>01</span><strong>SQL / JDBC export</strong><small>Partitioned, chunked extraction</small></div><div><span>02</span><strong>CSV snapshots</strong><small>Matching dataset suffixes</small></div><div><span>03</span><strong>Pandas aggregation</strong><small>Filter, sum, then calculate ratios</small></div><div><span>04</span><strong>Dash + Plotly</strong><small>Callbacks, tables &amp; 14 metric charts</small></div></div><dl class="engineering-list"><div><dt>Large-file loading</dt><dd>Selects only needed columns and reads performance data in chunks of 400,000 rows. The concatenated dataset still resides in memory.</dd></div><div><dt>Shared filtering</dt><dd>A lock-protected account filter cache lets table and chart callbacks reuse a filtered DataFrame for the same scope.</dd></div><div><dt>Metric correctness</dt><dd>Rate calculations follow aggregation, so high-volume accounts carry the appropriate weight. Missing denominators need explicit handling.</dd></div><div><dt>Refresh workflow</dt><dd>The export script includes retry paths, partition checkpoints and temporary-file replacement. The dashboard schedules a daily refresh and process restart.</dd></div></dl></div></div>
+        <div class="story-section"><div class="story-index">04 / THIS DEMO</div><div><h2>A self-contained portfolio reconstruction</h2><p>This site recreates the original project's main interactions in HTML, CSS and JavaScript using deterministic synthetic data. It preserves the account hierarchy, monthly/YTD filters and fourteen core metric formulas. It does not connect to a company network or run the original SQL export pipeline.</p><div class="demo-details"><div><strong>18</strong><span>fictional accounts</span></div><div><strong>4</strong><span>account hierarchy levels</span></div><div><strong>14</strong><span>explorable metrics</span></div></div><p>The redesigned interface, CSV export and illustrative assessment thresholds were added for the portfolio. The original WSSP rules and internal data are not included. No production performance or business-impact numbers are claimed here.</p><a href="#overview" class="text-link">Open the dashboard ↗</a></div></div>
+      </section>
+    </main>
+    <footer>Seller Performance Dashboard <span>Built by Jiaxin Hu · Portfolio reconstruction</span></footer>
+  </div>
+</div>
+<div id="tooltip" class="tooltip" role="tooltip" hidden></div>
+<div id="toast" class="toast" role="status" hidden></div>
+<script>
+'use strict';
+
+// Clean-room portfolio reconstruction. All records below are deterministic,
+// synthetic fixtures; no company database, credentials or source exports are used.
+const MONTHS = ['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'];
+const COUNTRIES = {US:'United States',UK:'United Kingdom',DE:'Germany',AU:'Australia'};
+const LEVELS = {
+  group:{key:'EGP_ORCL_ID',label:'group',plural:'groups'},
+  entity:{key:'UID',label:'entity',plural:'entities'},
+  seller:{key:'PRMRY_ORCL_ID',label:'seller',plural:'sellers'},
+  account:{key:'SLR_ID',label:'account',plural:'accounts'}
+};
+const METRICS = {
+  GMV:{label:'Gross merchandise value',short:'GMV',unit:'USD',type:'money',formula:'Σ GMV',help:'Total gross merchandise value in USD.'},
+  TRANS:{label:'Transactions',short:'Transactions',unit:'transactions',type:'count',formula:'Σ transactions',help:'Total transaction count.'},
+  INR:{label:'Item-not-received cases',short:'INR cases',unit:'cases',type:'count',formula:'Σ INR cases',help:'Count of item-not-received cases.'},
+  ILM_CNT:{label:'ILM cases',short:'ILM cases',unit:'cases',type:'count',formula:'Σ ILM cases',help:'Count of ILM cases, retaining the original metric label.'},
+  INR_Rate:{label:'Item-not-received rate',short:'INR rate',unit:'%',type:'rate',num:'INR',den:'TRANS',formula:'Σ INR cases ÷ Σ transactions',help:'A lower value means fewer item-not-received cases.'},
+  Ascan_Ontime_Rate:{label:'Acceptance scan on-time rate',short:'Acceptance on time',unit:'%',type:'rate',num:'Ascan_Ontime_Num',den:'Ascan_Ontime_Den',formula:'Σ on-time acceptance scans ÷ Σ eligible acceptance scans',help:'Weighted by eligible acceptance scans.'},
+  Dscan_Ontime_Rate:{label:'Delivery scan on-time rate',short:'Delivery on time',unit:'%',type:'rate',num:'Dscan_Ontime_Num',den:'Dscan_Ontime_Den',formula:'Σ on-time delivery scans ÷ Σ eligible delivery scans',help:'Weighted by eligible delivery scans.'},
+  AHT:{label:'Average handling time',short:'Handling time',unit:'days',type:'days',num:'AHT_Num',den:'AHT_Den',formula:'Σ handling days ÷ Σ eligible handling records',help:'Average handling time in days.'},
+  ADD:{label:'Average delivery days',short:'Delivery days',unit:'days',type:'days',num:'ADD_Num',den:'ADD_Den',formula:'Σ delivery days ÷ Σ eligible delivery records',help:'Average delivery time in days.'},
+  Ascan_Filling_Rate:{label:'Acceptance scan filling rate',short:'Acceptance filling',unit:'%',type:'rate',num:'Ascan_Filling',den:'TRANS',clip:true,formula:'Σ acceptance scan fillings ÷ Σ transactions',help:'Clipped to 0–100%, matching the original chart formula.'},
+  Dscan_Filling_Rate:{label:'Delivery scan filling rate',short:'Delivery filling',unit:'%',type:'rate',num:'Dscan_Filling',den:'TRANS',clip:true,formula:'Σ delivery scan fillings ÷ Σ transactions',help:'Clipped to 0–100%, matching the original chart formula.'},
+  CWH_Rate:{label:'CWH transaction rate',short:'CWH rate',unit:'%',type:'rate',num:'CWH_TRANS',den:'TRANS',formula:'Σ CWH transactions ÷ Σ transactions',help:'Retains the original CWH metric label.'},
+  ILM_Rate:{label:'ILM rate',short:'ILM rate',unit:'%',type:'rate',num:'ILM_CNT',den:'TRANS',formula:'Σ ILM cases ÷ Σ transactions',help:'Weighted by transaction count.'},
+  Implied_ILM_Rate:{label:'Implied ILM rate',short:'Implied ILM rate',unit:'%',type:'rate',num:'Implied_ILM_CNT',den:'TRANS',formula:'Σ implied ILM cases ÷ Σ transactions',help:'Weighted by transaction count.'}
+};
+const ATOMIC = ['GMV','TRANS','INR','ILM_CNT','Implied_ILM_CNT','Ascan_Ontime_Num','Ascan_Ontime_Den','Dscan_Ontime_Num','Dscan_Ontime_Den','AHT_Num','AHT_Den','ADD_Num','ADD_Den','Ascan_Filling','Dscan_Filling','CWH_TRANS'];
+const ACCOUNT_NAMES = ['Northstar Goods','Willow & Co.','Atlas Supply','Lumen Studio','Harbor Home','Field & Form','Cedar Collective','Orbit Essentials','Oakline Market','Terra Trading','Juniper Living','Cove Commerce','Sable Supply','Meadow Shop','Pioneer Goods','Marlow Market','Sierra Studio','Brightside Retail'];
+const SELLER_NAMES = ['Northstar Retail','Atlas Commerce','Harbor Brands','Cedar Partners','Oakline Retail','Cove Group','Sable Commerce','Pioneer Retail','Brightside Brands'];
+const ENTITY_NAMES = ['Northstar Entity','Harbor Entity','Cedar Entity','Cove Entity','Pioneer Entity','Brightside Entity'];
+const GROUP_NAMES = ['Northstar Group','Cedar Group','Pioneer Group'];
+const SELLER_ENTITY = [0,0,1,2,2,3,4,4,5];
+const ACCOUNTS = ACCOUNT_NAMES.map((name,i)=>{
+  const seller=Math.floor(i/2),entity=SELLER_ENTITY[seller],group=Math.floor(entity/2);
+  return {name,SLR_ID:`A-${1001+i}`,PRMRY_ORCL_ID:`S-${2001+seller}`,UID:`E-${3001+entity}`,EGP_ORCL_ID:`G-${4001+group}`,sellerName:SELLER_NAMES[seller],entityName:ENTITY_NAMES[entity],groupName:GROUP_NAMES[group],manager:['Alex Morgan','Jamie Lee','Taylor Reed'][group]};
+});
+function seededRandom(seed){return ()=>{seed=(Math.imul(seed,1664525)+1013904223)>>>0;return seed/4294967296;};}
+function generateData(){
+  const rand=seededRandom(41726),rows=[];
+  for(const year of [2025,2026]) for(let month=1;month<=(year===2026?9:12);month++) for(let i=0;i<ACCOUNTS.length;i++) for(const [j,corridor] of Object.keys(COUNTRIES).entries()){
+    const growth=year===2026?1.17:1,season=1+.15*Math.sin((month-3)/12*Math.PI*2)+(month>=11?.28:0);
+    const trans=Math.round((850+i*63)*[1.65,1.05,.7,.46][j]*growth*season*(.88+rand()*.24));
+    const risk=[4,11,15].includes(i)?.016:([2,8,16].includes(i)?.0102:.0065);
+    const inrRate=Math.max(.002,risk+j*.0006-(year===2026?.0008:0)+(rand()-.5)*.0015);
+    const eligibleA=Math.round(trans*(.9+rand()*.07)),eligibleD=Math.round(trans*(.91+rand()*.06));
+    const rateA=Math.min(.994,([4,11,15].includes(i)?.922:.969)-j*.005+(year===2026?.007:0)+(rand()-.5)*.015);
+    const rateD=Math.min(.99,([4,11,15].includes(i)?.905:.95)-j*.004+(year===2026?.009:0)+(rand()-.5)*.012);
+    rows.push({...ACCOUNTS[i],year,month,corridor,GMV:Math.round(trans*(29+i*2.6+j*1.4)*(year===2026?1.025:1)*100)/100,TRANS:trans,INR:Math.round(trans*inrRate),ILM_CNT:Math.round(trans*(.0035+j*.0002+rand()*.002)),Implied_ILM_CNT:Math.round(trans*(.006+rand()*.003)),Ascan_Ontime_Num:Math.round(eligibleA*rateA),Ascan_Ontime_Den:eligibleA,Dscan_Ontime_Num:Math.round(eligibleD*rateD),Dscan_Ontime_Den:eligibleD,AHT_Num:trans*(1.3+j*.1+(year===2026?-.13:0)+rand()*.35),AHT_Den:trans,ADD_Num:eligibleD*(4.3+j*.65+(year===2026?-.3:0)+rand()*.7),ADD_Den:eligibleD,Ascan_Filling:Math.round(trans*(.966+rand()*.02)),Dscan_Filling:Math.round(trans*(.947+rand()*.035)),CWH_TRANS:Math.round(trans*(.39+(i%3)*.07+rand()*.05))});
+  }
+  return rows;
+}
+const DATA = generateData();
+const state={page:'overview',level:'group',scope:'all',corridor:'all',period:'monthly',year:2026,month:9,metric:'GMV',search:'',pageIndex:0};
+const $=id=>document.getElementById(id);
+const escapeHTML=value=>String(value).replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
+const safeDivide=(a,b)=>b>0?a/b:null;
+function aggregate(rows){
+  const sum=Object.fromEntries(ATOMIC.map(k=>[k,0]));
+  for(const r of rows)for(const k of ATOMIC)sum[k]+=r[k]||0;
+  const result={...sum,count:rows.length};
+  for(const [key,m] of Object.entries(METRICS))if(m.num){let value=safeDivide(sum[m.num],sum[m.den]);if(m.clip&&value!==null)value=Math.max(0,Math.min(1,value));result[key]=value;}
+  return result;
+}
+function baseRows(year=state.year){return DATA.filter(r=>r.year===year&&(state.scope==='all'||r[LEVELS[state.level].key]===state.scope)&&(state.corridor==='all'||r.corridor===state.corridor));}
+function windowRows(year=state.year){return baseRows(year).filter(r=>state.period==='monthly'?r.month===state.month:r.month<=state.month);}
+function fmt(value,key,compact=false){
+  if(value===null||value===undefined||!Number.isFinite(value))return '—';
+  const m=METRICS[key];
+  if(m.type==='rate')return `${(value*100).toFixed(2)}%`;
+  if(m.type==='days')return `${value.toFixed(2)}${compact?'':' d'}`;
+  if(m.type==='money')return compact?'$'+shortNumber(value):'$'+Math.round(value).toLocaleString('en-US');
+  return compact?shortNumber(value):Math.round(value).toLocaleString('en-US');
+}
+function shortNumber(n){if(Math.abs(n)>=1e6)return (n/1e6).toFixed(2)+'M';if(Math.abs(n)>=1e3)return (n/1e3).toFixed(1)+'K';return Math.round(n).toLocaleString('en-US');}
+function periodLabel(){return state.period==='monthly'?`${MONTHS[state.month-1]} ${state.year}`:`Jan–${MONTHS[state.month-1]} ${state.year}`;}
+function updateMonthOptions(){
+  const max=state.year===2026?9:12;state.month=Math.min(state.month,max);
+  $('month').innerHTML=MONTHS.slice(0,max).map((m,i)=>`<option value="${i+1}">${m}</option>`).join('');$('month').value=state.month;
+}
+function scopeName(account){return account[state.level==='group'?'groupName':state.level==='entity'?'entityName':state.level==='seller'?'sellerName':'name'];}
+function updateScopeOptions(){
+  const level=LEVELS[state.level],options=new Map();
+  for(const a of ACCOUNTS)options.set(a[level.key],scopeName(a));
+  $('scope').innerHTML=`<option value="all">All ${level.plural}</option>`+[...options].map(([id,name])=>`<option value="${id}">${escapeHTML(name)} · ${id}</option>`).join('');
+  if(state.scope!=='all'&&!options.has(state.scope))state.scope='all';$('scope').value=state.scope;
+}
+function accountStatus(a){
+  if(a.count===0)return {text:'No data',css:'neutral',rank:-1};
+  if(a.INR_Rate>.01||a.Ascan_Ontime_Rate<.95||a.Dscan_Ontime_Rate<.93)return {text:'Needs review',css:'review',rank:2};
+  if(a.INR_Rate>.0085||a.Dscan_Ontime_Rate<.945)return {text:'Watch',css:'watch',rank:1};
+  return {text:'On track',css:'',rank:0};
+}
+function badge(status){return `<span class="health-badge ${status.css}"><span aria-hidden="true">${status.rank===0?'●':status.rank===1?'◐':status.rank===2?'!':'–'}</span>${status.text}</span>`;}
+function renderKPIs(){
+  const curr=aggregate(windowRows()),prev=aggregate(windowRows(state.year-1));
+  const specs=[{key:'GMV',label:'Gross merchandise value',icon:'↗',lower:false},{key:'TRANS',label:'Transactions',icon:'▦',lower:false},{key:'INR_Rate',label:'Item-not-received rate',icon:'◉',lower:true},{key:'Dscan_Ontime_Rate',label:'Delivery scans on time',icon:'✓',lower:false}];
+  $('kpi-grid').innerHTML=specs.map(({key,label,icon,lower})=>{
+    let delta='No prior-year data',good=null;
+    if(prev.count&&prev[key]!==null&&curr[key]!==null){
+      const isRate=METRICS[key].type==='rate',diff=isRate?(curr[key]-prev[key])*100:prev[key]?(curr[key]/prev[key]-1)*100:null;
+      if(diff!==null){good=lower?diff<=0:diff>=0;delta=`${diff>0?'↑':diff<0?'↓':'→'} ${Math.abs(diff).toFixed(isRate?2:1)}${isRate?' pp':'%'}`;}
+    }
+    return `<article class="kpi-card"><div class="kpi-label">${label}<span class="kpi-icon" aria-hidden="true">${icon}</span></div><div class="kpi-value">${curr.count?fmt(curr[key],key,true):'—'}</div><div class="kpi-bottom"><span class="delta ${good===null?'neutral':good?'':'negative'}">${delta}</span>${good!==null?'<span>vs same period last year</span>':''}</div></article>`;
+  }).join('');
+}
+function monthlySeries(year,key){return Array.from({length:state.month},(_,i)=>{const rows=baseRows(year).filter(r=>state.period==='ytd'?r.month<=i+1:r.month===i+1),a=aggregate(rows);return {month:i+1,value:a.count?a[key]:null};});}
+function chart(container,key){
+  if(container.closest('[hidden]'))return;
+  const width=container.clientWidth||600,height=container.clientHeight||246,m=METRICS[key];
+  const padding={left:width<400?53:60,right:15,top:18,bottom:35},plotW=width-padding.left-padding.right,plotH=height-padding.top-padding.bottom;
+  const current=monthlySeries(state.year,key),previous=monthlySeries(state.year-1,key),hasPrevious=previous.some(p=>p.value!==null);
+  const vals=[...current,...previous].map(p=>p.value).filter(v=>v!==null&&Number.isFinite(v));
+  if(!vals.length){container.innerHTML='<div class="empty">No data for this selection.</div>';return;}
+  const max=Math.max(...vals),min=Math.min(...vals);let low=0,high=max*1.15||1;
+  if(m.type==='rate'){low=Math.max(0,min-(max-min)*.3-.002);high=Math.min(1,max+(max-min)*.3+.002);if(high<=low)high=low+.01;}
+  const x=i=>padding.left+(state.month===1?plotW/2:i*plotW/(state.month-1)),y=v=>padding.top+plotH-(v-low)/(high-low)*plotH;
+  const axis=v=>m.type==='rate'?(v*100).toFixed(high-low<.03?1:0)+'%':m.type==='days'?v.toFixed(1):m.type==='money'?'$'+(v>=1e6?(v/1e6).toFixed(1)+'M':v>=1e3?Math.round(v/1e3)+'K':Math.round(v)):shortNumber(v);
+  let grid='';for(let i=0;i<5;i++){const value=low+(high-low)*i/4,py=y(value);grid+=`<line x1="${padding.left}" y1="${py}" x2="${width-padding.right}" y2="${py}" stroke="#edf0e7" stroke-width="1"/><text x="${padding.left-10}" y="${py+3}" text-anchor="end">${axis(value)}</text>`;}
+  const xTicks=width<420?4:7,step=Math.max(1,Math.ceil(state.month/xTicks));
+  current.forEach((p,i)=>{if(i%step===0||i===state.month-1)grid+=`<text x="${x(i)}" y="${height-12}" text-anchor="${i===0&&state.month>1?'start':i===state.month-1&&state.month>1?'end':'middle'}">${MONTHS[i]}</text>`;});
+  const path=points=>points.map((p,i)=>p.value===null?'':`${i===0?'M':'L'} ${x(i).toFixed(2)} ${y(p.value).toFixed(2)}`).join(' ');
+  const pCurrent=path(current),lastIndex=current.length-1;
+  const area=`${pCurrent} L ${x(lastIndex)} ${padding.top+plotH} L ${x(0)} ${padding.top+plotH} Z`;
+  const gradientId=`fill-${container.id}`;
+  container.innerHTML=`<svg class="chart-svg" viewBox="0 0 ${width} ${height}" role="img" aria-label="${escapeHTML(m.label)} in ${m.unit}, ${state.period==='ytd'?'cumulative January through':'monthly January through'} ${MONTHS[state.month-1]} ${state.year}${hasPrevious?', compared with '+(state.year-1):''}"><defs><linearGradient id="${gradientId}" x1="0" y1="0" x2="0" y2="1"><stop offset="0%" stop-color="#b8d0a4" stop-opacity=".35"/><stop offset="100%" stop-color="#dce8cb" stop-opacity=".02"/></linearGradient></defs>${grid}<path d="${area}" fill="url(#${gradientId})"/>${hasPrevious?`<path d="${path(previous)}" fill="none" stroke="#afc09f" stroke-width="1.9" stroke-dasharray="5 5"/>`:''}<path d="${pCurrent}" fill="none" stroke="#367c61" stroke-width="2.7" stroke-linecap="round" stroke-linejoin="round"/>${current.map((p,i)=>p.value===null?'':`<circle cx="${x(i)}" cy="${y(p.value)}" r="${state.month===1?4:2.8}" fill="#fff" stroke="#367c61" stroke-width="1.7"/>`).join('')}<g data-hover hidden><line data-guide y1="${padding.top}" y2="${padding.top+plotH}" stroke="#789672" stroke-dasharray="3 4"/><circle data-marker-current r="4.5" fill="#367c61" stroke="#fff" stroke-width="2"/><circle data-marker-previous r="4" fill="#afc09f" stroke="#fff" stroke-width="2"/></g><rect data-overlay x="${padding.left-8}" y="${padding.top}" width="${plotW+16}" height="${plotH}" fill="transparent" tabindex="0" aria-label="Explore chart values with left and right arrow keys"/></svg>`;
+  const svg=container.querySelector('svg'),overlay=svg.querySelector('[data-overlay]'),hover=svg.querySelector('[data-hover]'),tooltip=$('tooltip');let index=lastIndex;
+  function show(i,clientX,clientY){
+    index=Math.max(0,Math.min(lastIndex,i));hover.removeAttribute('hidden');
+    const guide=hover.querySelector('[data-guide]');guide.setAttribute('x1',x(index));guide.setAttribute('x2',x(index));
+    for(const [series,name] of [[current,'current'],[previous,'previous']]){const circle=hover.querySelector(`[data-marker-${name}]`);if(series[index].value===null){circle.style.display='none';}else{circle.style.display='';circle.setAttribute('cx',x(index));circle.setAttribute('cy',y(series[index].value));}}
+    tooltip.innerHTML=`<strong>${state.period==='ytd'?'Jan–':''}${MONTHS[index]} · ${escapeHTML(m.short)}</strong><div class="tip-row"><span>${state.year}</span><span>${fmt(current[index].value,key)}</span></div>${hasPrevious?`<div class="tip-row"><span>${state.year-1}</span><span>${fmt(previous[index].value,key)}</span></div>`:''}`;
+    tooltip.hidden=false;const box=svg.getBoundingClientRect();
+    const cx=clientX??box.left+x(index),cy=clientY??box.top+padding.top+20;
+    tooltip.style.left=Math.max(8,Math.min(window.innerWidth-tooltip.offsetWidth-8,cx+14))+'px';
+    tooltip.style.top=Math.max(8,Math.min(window.innerHeight-tooltip.offsetHeight-8,cy-tooltip.offsetHeight-10))+'px';
+  }
+  function hide(){hover.setAttribute('hidden','');tooltip.hidden=true;}
+  overlay.addEventListener('pointermove',e=>{const box=svg.getBoundingClientRect(),local=(e.clientX-box.left)*width/box.width;show(state.month===1?0:Math.round((local-padding.left)/plotW*lastIndex),e.clientX,e.clientY);});
+  overlay.addEventListener('pointerleave',hide);overlay.addEventListener('focus',()=>show(index));overlay.addEventListener('blur',hide);
+  overlay.addEventListener('keydown',e=>{if(['ArrowLeft','ArrowRight','Home','End'].includes(e.key)){e.preventDefault();show(e.key==='Home'?0:e.key==='End'?lastIndex:index+(e.key==='ArrowLeft'?-1:1));}if(e.key==='Escape')hide();});
+}
+function renderMix(){
+  const rows=windowRows(),tot=aggregate(rows).GMV;
+  const data=Object.entries(COUNTRIES).map(([id,name])=>({id,name,value:aggregate(rows.filter(r=>r.corridor===id)).GMV})).filter(r=>state.corridor==='all'||r.id===state.corridor).sort((a,b)=>b.value-a.value);
+  $('corridor-mix').innerHTML=data.map(r=>`<div class="mix-row"><div class="mix-row-top"><span class="country-code">${r.id}</span><span>${r.name}</span><strong>${tot?(r.value/tot*100).toFixed(1):'0.0'}%</strong></div><div class="mix-track" role="meter" aria-label="${r.name} GMV share" aria-valuemin="0" aria-valuemax="100" aria-valuenow="${tot?r.value/tot*100:0}"><div style="width:${tot?r.value/tot*100:0}%"></div></div></div>`).join('');
+}
+function accountData(){
+  const rows=windowRows(),map=new Map();for(const r of rows){if(!map.has(r.SLR_ID))map.set(r.SLR_ID,[]);map.get(r.SLR_ID).push(r);}
+  return [...map].map(([id,records])=>{const a=ACCOUNTS.find(a=>a.SLR_ID===id),metrics=aggregate(records);return {...a,metrics,status:accountStatus(metrics)};});
+}
+function accountTable(accounts,showEntity=false){
+  if(!accounts.length)return '<div class="empty">No accounts match your search. Try a different name or ID.</div>';
+  return `<div class="table-scroll"><table class="data-table"><thead><tr><th>Account</th><th>${showEntity?'Seller / Entity':'Seller'}</th><th class="numeric">GMV</th><th class="numeric">Transactions</th><th class="numeric">INR rate</th><th class="numeric">On-time delivery</th><th>Demo health</th></tr></thead><tbody>${accounts.map(a=>`<tr><td><button class="drill-button" data-account="${a.SLR_ID}" aria-label="View ${escapeHTML(a.name)}"><span class="account-name"><span class="mini-avatar" aria-hidden="true">${a.name.split(' ').map(x=>x[0]).slice(0,2).join('')}</span><span><strong>${escapeHTML(a.name)}</strong><small>${a.SLR_ID}</small></span></span></button></td><td>${escapeHTML(a.sellerName)}${showEntity?`<br><small>${a.UID}</small>`:''}</td><td class="numeric">${fmt(a.metrics.GMV,'GMV')}</td><td class="numeric">${fmt(a.metrics.TRANS,'TRANS')}</td><td class="numeric">${fmt(a.metrics.INR_Rate,'INR_Rate')}</td><td class="numeric">${fmt(a.metrics.Dscan_Ontime_Rate,'Dscan_Ontime_Rate')}</td><td>${badge(a.status)}</td></tr>`).join('')}</tbody></table></div>`;
+}
+function renderOverview(){
+  $('current-year-label').textContent=state.year;$('previous-year-label').textContent=state.year-1;
+  $('previous-year-label').parentElement.hidden=!baseRows(state.year-1).length;
+  $('chart-period').textContent=state.period==='ytd'?'cumulative year to date':'monthly totals';
+  chart($('revenue-chart'),'GMV');renderMix();
+  $('overview-table').innerHTML=accountTable(accountData().sort((a,b)=>b.status.rank-a.status.rank||b.metrics.GMV-a.metrics.GMV).slice(0,6));
+}
+function renderPerformance(){
+  chart($('performance-chart'),state.metric);const m=METRICS[state.metric];
+  $('metric-formula').innerHTML=`<strong>${escapeHTML(m.formula)}</strong> · ${escapeHTML(m.help)} ${m.num?'Numerators and denominators are summed before division; an empty denominator displays —.':''}`;
+  const rows=windowRows(),keys=['GMV','TRANS','INR_Rate','Ascan_Ontime_Rate','Dscan_Ontime_Rate','AHT','ADD'];
+  $('summary-table').innerHTML=`<div class="table-scroll"><table class="data-table"><thead><tr><th>Corridor</th>${keys.map(k=>`<th class="numeric">${METRICS[k].short}${METRICS[k].type==='days'?' (days)':''}</th>`).join('')}</tr></thead><tbody>${Object.entries(COUNTRIES).filter(([id])=>state.corridor==='all'||id===state.corridor).map(([id,name])=>{const a=aggregate(rows.filter(r=>r.corridor===id));return `<tr><td>${name}</td>${keys.map(k=>`<td class="numeric">${a.count?fmt(a[k],k):'—'}</td>`).join('')}</tr>`;}).join('')}</tbody></table></div>`;
+}
+function renderAccounts(){
+  const search=state.search.toLowerCase().trim(),accounts=accountData().filter(a=>[a.name,a.SLR_ID,a.PRMRY_ORCL_ID,a.UID,a.sellerName].some(v=>v.toLowerCase().includes(search))).sort((a,b)=>a.SLR_ID.localeCompare(b.SLR_ID)),pageSize=8,totalPages=Math.ceil(accounts.length/pageSize);
+  state.pageIndex=Math.max(0,Math.min(state.pageIndex,totalPages-1));const start=state.pageIndex*pageSize;
+  $('accounts-table').innerHTML=accountTable(accounts.slice(start,start+pageSize),true);
+  $('page-info').textContent=accounts.length?`${start+1}–${Math.min(start+pageSize,accounts.length)} of ${accounts.length} accounts`:'0 accounts';
+  $('prev-page').disabled=state.pageIndex===0;$('next-page').disabled=state.pageIndex>=totalPages-1;
+}
+function renderAssessment(){
+  const rows=windowRows();
+  const cell=(value,key,threshold,higher)=>{const ok=value!==null&&(higher?value>=threshold:value<=threshold);return `<td class="numeric">${fmt(value,key)} <span class="health-badge ${value===null?'neutral':ok?'':'review'}">${value===null?'No data':ok?'Meets demo target':'Below demo target'}</span></td>`;};
+  $('assessment-table').innerHTML=`<div class="table-scroll"><table class="data-table"><thead><tr><th>Corridor</th><th class="numeric">Acceptance on time</th><th class="numeric">Delivery on time</th><th class="numeric">INR rate</th><th>Demo result</th></tr></thead><tbody>${Object.entries(COUNTRIES).filter(([id])=>state.corridor==='all'||state.corridor===id).map(([id,name])=>{const a=aggregate(rows.filter(r=>r.corridor===id));return `<tr><td>${name}</td>${cell(a.Ascan_Ontime_Rate,'Ascan_Ontime_Rate',.95,true)}${cell(a.Dscan_Ontime_Rate,'Dscan_Ontime_Rate',.93,true)}${cell(a.INR_Rate,'INR_Rate',.01,false)}<td>${badge(accountStatus(a))}</td></tr>`;}).join('')}</tbody></table></div>`;
+}
+function render(){
+  $('tooltip').hidden=true;
+  const base=baseRows(),numAccounts=new Set(base.map(r=>r.SLR_ID)).size,level=LEVELS[state.level];
+  const scope=state.scope==='all'?`All ${level.plural}`:scopeName(ACCOUNTS.find(a=>a[level.key]===state.scope));
+  $('scope-description').innerHTML=`<strong>${escapeHTML(scope)}</strong> <span aria-hidden="true">·</span> ${numAccounts} accounts <span aria-hidden="true">·</span> ${state.corridor==='all'?'4 corridors':COUNTRIES[state.corridor]}`;
+  $('period-description').textContent=`Reporting period: ${periodLabel()}`;renderKPIs();
+  if(state.page==='overview')renderOverview();else if(state.page==='performance')renderPerformance();else if(state.page==='accounts')renderAccounts();else if(state.page==='assessment')renderAssessment();
+}
+const PAGE_LABELS={overview:'Overview',performance:'Performance',accounts:'Accounts',assessment:'Assessment',story:'Project story'};
+const PAGE_COPY={overview:['Every signal. One clear view.','Understand seller performance, from revenue to the last mile.'],performance:['Follow the performance story.','Explore revenue, delivery quality and fourteen connected metrics.'],accounts:['See the account behind the signal.','Move from a portfolio-wide view to an individual account.'],assessment:['Bring delivery quality into focus.','Review corridor-level signals against illustrative demo targets.']};
+function route(){
+  const requested=window.location.hash.slice(1);state.page=PAGE_LABELS[requested]?requested:'overview';
+  $('page-label').textContent=PAGE_LABELS[state.page];
+  document.querySelectorAll('[data-page]').forEach(a=>{a.classList.toggle('active',a.dataset.page===state.page);if(a.dataset.page===state.page)a.setAttribute('aria-current','page');else a.removeAttribute('aria-current');});
+  $('dashboard-page').hidden=state.page==='story';$('story-page').hidden=state.page!=='story';
+  for(const page of ['overview','performance','accounts','assessment'])$(page+'-content').hidden=state.page!==page;
+  if(state.page!=='story'){const [title,subtitle]=PAGE_COPY[state.page];$('view-title').textContent=title;$('view-subtitle').textContent=subtitle;render();}
+  document.title=`${PAGE_LABELS[state.page]} | Seller Performance Dashboard — Jiaxin Hu`;
+}
+function syncControls(){for(const id of ['level','corridor','period','year'])$(id).value=state[id];updateScopeOptions();updateMonthOptions();$('metric').value=state.metric;}
+for(const id of ['level','scope','corridor','period','year','month'])$(id).addEventListener('change',e=>{
+  state[id]=['year','month'].includes(id)?Number(e.target.value):e.target.value;state.pageIndex=0;
+  if(id==='level'){state.scope='all';updateScopeOptions();}if(id==='year')updateMonthOptions();render();
+});
+$('metric').innerHTML=Object.entries(METRICS).map(([id,m])=>`<option value="${id}">${m.label}</option>`).join('');
+$('metric').addEventListener('change',e=>{state.metric=e.target.value;renderPerformance();});
+$('account-search').addEventListener('input',e=>{state.search=e.target.value;state.pageIndex=0;renderAccounts();});
+$('prev-page').addEventListener('click',()=>{state.pageIndex--;renderAccounts();});
+$('next-page').addEventListener('click',()=>{state.pageIndex++;renderAccounts();});
+$('reset-button').addEventListener('click',()=>{Object.assign(state,{level:'group',scope:'all',corridor:'all',period:'monthly',year:2026,month:9,search:'',pageIndex:0});$('account-search').value='';syncControls();render();});
+document.addEventListener('click',e=>{const button=e.target.closest('[data-account]');if(!button)return;state.level='account';state.scope=button.dataset.account;state.search='';state.pageIndex=0;$('account-search').value='';syncControls();if(window.location.hash==='#overview')route();else window.location.hash='overview';window.scrollTo({top:0,behavior:window.matchMedia('(prefers-reduced-motion: reduce)').matches?'auto':'smooth'});});
+let toastTimer;function toast(message){clearTimeout(toastTimer);$('toast').textContent=message;$('toast').hidden=false;toastTimer=setTimeout(()=>{$('toast').hidden=true;},3500);}
+function exportReport(){
+  const rows=windowRows(),keys=Object.keys(METRICS),meta=['data_type','year','period','end_month','view_by','scope','corridor','source_record_count'];
+  const csvCell=v=>'"'+String(v??'').replace(/"/g,'""')+'"';
+  const records=Object.entries(COUNTRIES).filter(([id])=>state.corridor==='all'||state.corridor===id).map(([id])=>{const a=aggregate(rows.filter(r=>r.corridor===id));return ['synthetic',state.year,state.period,state.month,state.level,state.scope,id,a.count,...keys.map(k=>a.count&&a[k]!==null?Number(a[k].toFixed(8)):'')];});
+  const content='\ufeff'+[meta.concat(keys),...records].map(row=>row.map(csvCell).join(',')).join('\r\n');
+  const url=URL.createObjectURL(new Blob([content],{type:'text/csv;charset=utf-8;'})),a=document.createElement('a');a.href=url;a.download=`seller-performance-dashboard-${state.year}-${String(state.month).padStart(2,'0')}-${state.period}.csv`;document.body.appendChild(a);a.click();a.remove();setTimeout(()=>URL.revokeObjectURL(url),1000);toast('Report exported. All values are synthetic demo data.');
+}
+$('export-button').addEventListener('click',exportReport);
+window.addEventListener('hashchange',route);
+let resizeTimer;const observer=new ResizeObserver(()=>{clearTimeout(resizeTimer);resizeTimer=setTimeout(()=>{if(state.page==='overview')chart($('revenue-chart'),'GMV');else if(state.page==='performance')chart($('performance-chart'),state.metric);},80);});
+observer.observe($('revenue-chart'));observer.observe($('performance-chart'));
+syncControls();route();
+
+</script>
+</body>
+</html>
