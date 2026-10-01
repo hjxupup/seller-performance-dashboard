@@ -2,7 +2,9 @@
 
 An interactive analytics dashboard that brings seller revenue, delivery performance, and account health into one operational workspace.
 
-**[Open the Live Demo →](https://jiaxin-sellerops.hjxupup.chatgpt.site/)**
+**[Open the Live Demo →](https://hjxupup.github.io/seller-performance-dashboard/)**
+
+Hosted on GitHub Pages. No sign-in or local deployment is required.
 
 **Original application:** Python · Dash · Pandas · NumPy · Plotly · SQL/JDBC  
 **Public portfolio demo:** HTML · CSS · JavaScript · Synthetic data
